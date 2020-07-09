@@ -93,6 +93,13 @@ let rover: Dog = { bark() {} };
 declare let map: MyMap<Dog, string>;
 map[rover] = "Rover";
 
+// Issue #39524
+declare const nestedmap: { nested: MyMap<string, string> };
+nestedmap.nested['hello'];
+nestedmap.nested['hello'] = 'modified';
+nestedmap.nested['hello'] += 1;
+nestedmap.nested['hello'] ++;
+
 
 //// [noImplicitAnyStringIndexerOnObject.js]
 var a = {}["hello"];
@@ -168,3 +175,7 @@ var strEnumKey;
 o[strEnumKey];
 var rover = { bark: function () { } };
 map[rover] = "Rover";
+nestedmap.nested['hello'];
+nestedmap.nested['hello'] = 'modified';
+nestedmap.nested['hello'] += 1;
+nestedmap.nested['hello']++;

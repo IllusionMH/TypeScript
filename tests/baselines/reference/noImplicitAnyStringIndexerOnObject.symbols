@@ -277,3 +277,29 @@ map[rover] = "Rover";
 >map : Symbol(map, Decl(noImplicitAnyStringIndexerOnObject.ts, 91, 11))
 >rover : Symbol(rover, Decl(noImplicitAnyStringIndexerOnObject.ts, 89, 3))
 
+// Issue #39524
+declare const nestedmap: { nested: MyMap<string, string> };
+>nestedmap : Symbol(nestedmap, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 13))
+>nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+>MyMap : Symbol(MyMap, Decl(noImplicitAnyStringIndexerOnObject.ts, 80, 14))
+
+nestedmap.nested['hello'];
+>nestedmap.nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+>nestedmap : Symbol(nestedmap, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 13))
+>nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+
+nestedmap.nested['hello'] = 'modified';
+>nestedmap.nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+>nestedmap : Symbol(nestedmap, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 13))
+>nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+
+nestedmap.nested['hello'] += 1;
+>nestedmap.nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+>nestedmap : Symbol(nestedmap, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 13))
+>nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+
+nestedmap.nested['hello'] ++;
+>nestedmap.nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+>nestedmap : Symbol(nestedmap, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 13))
+>nested : Symbol(nested, Decl(noImplicitAnyStringIndexerOnObject.ts, 95, 26))
+

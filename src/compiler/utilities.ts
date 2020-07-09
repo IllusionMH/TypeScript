@@ -4757,7 +4757,7 @@ namespace ts {
         if (isPropertyAccessExpression(expr)) {
             const baseStr = tryGetPropertyAccessOrIdentifierToString(expr.expression);
             if (baseStr !== undefined) {
-                return baseStr + "." + expr.name;
+                return baseStr + "." + unescapeLeadingUnderscores(expr.name.escapedText);
             }
         }
         else if (isIdentifier(expr)) {

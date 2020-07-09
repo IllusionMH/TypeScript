@@ -418,3 +418,41 @@ map[rover] = "Rover";
 >rover : Dog
 >"Rover" : "Rover"
 
+// Issue #39524
+declare const nestedmap: { nested: MyMap<string, string> };
+>nestedmap : { nested: MyMap<string, string>; }
+>nested : MyMap<string, string>
+
+nestedmap.nested['hello'];
+>nestedmap.nested['hello'] : any
+>nestedmap.nested : MyMap<string, string>
+>nestedmap : { nested: MyMap<string, string>; }
+>nested : MyMap<string, string>
+>'hello' : "hello"
+
+nestedmap.nested['hello'] = 'modified';
+>nestedmap.nested['hello'] = 'modified' : "modified"
+>nestedmap.nested['hello'] : any
+>nestedmap.nested : MyMap<string, string>
+>nestedmap : { nested: MyMap<string, string>; }
+>nested : MyMap<string, string>
+>'hello' : "hello"
+>'modified' : "modified"
+
+nestedmap.nested['hello'] += 1;
+>nestedmap.nested['hello'] += 1 : any
+>nestedmap.nested['hello'] : any
+>nestedmap.nested : MyMap<string, string>
+>nestedmap : { nested: MyMap<string, string>; }
+>nested : MyMap<string, string>
+>'hello' : "hello"
+>1 : 1
+
+nestedmap.nested['hello'] ++;
+>nestedmap.nested['hello'] ++ : number
+>nestedmap.nested['hello'] : any
+>nestedmap.nested : MyMap<string, string>
+>nestedmap : { nested: MyMap<string, string>; }
+>nested : MyMap<string, string>
+>'hello' : "hello"
+
